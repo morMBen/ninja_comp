@@ -1,0 +1,27 @@
+button[class='reusableUI'] {
+  cursor: pointer;
+  padding: 15px;
+  border: none;
+  border-radius: 3px;
+}
+
+button[class='reusableUI'][data-mode='dark'] {
+  background-color: var(--DEFAULT_BUTTON_BACKGROUND_LIGHT_MODE);
+  border: 1px solid var(--DEFAULT_BUTTON_BACKGROUND_DARK_MODE);
+}
+
+button[class='reusableUI'][data-mode='light'] {
+  background-color: var(--DEFAULT_BUTTON_BACKGROUND_DARK_MODE);
+  border: 1px solid var(--DEFAULT_BUTTON_BACKGROUND_LIGHT_MODE);
+}
+
+button[class='reusableUI'][data-mode='dark']:hover {
+  background-color: var(--DEFAULT_BUTTON_BACKGROUND_DARK_MODE);
+  border: 1px solid var(--DEFAULT);
+}
+
+button[class='reusableUI'][data-mode='light']:hover {
+  box-shadow: 0px 0px 10px 5px var(--DEFAULT_BUTTON_BACKGROUND_DARK_MODE);
+  transform: scale(1.1);
+  transition: 0.2s;
+}
