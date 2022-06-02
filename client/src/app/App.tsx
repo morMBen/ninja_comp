@@ -1,5 +1,6 @@
 import { useTimerInterval } from '../hooks/timerInterval.hook';
 import './App.css';
+import "../packs/reusableUI_CSS_packs"
 
 function App() {
   const { time, restartTimer, startTimer, pauseTimer } = useTimerInterval(100);
