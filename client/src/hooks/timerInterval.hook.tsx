@@ -115,3 +115,50 @@ export const useStopWatchTimer = (
 
   return { seconds, points, splitReset, startPause, btnStatus };
 };
+
+export const useSemiOfficialTimer = (
+  numOfObstacles: number,
+  fractionSpeed: number
+) => {
+  const { seconds, startTimer, restartTimer, pauseTimer } =
+    useTimerInterval(fractionSpeed);
+  const [points, setPoints] = useState<number[]>([]);
+  const [btnStatus, setBtnStatus] = useState({
+    startPauseBtn: 'start',
+    passBuzzerBtn: 'off',
+    fellResetBtn: 'off',
+  });
+  const [isTimerOn, setIsTimerOn] = useState(false);
+
+  const start = () => {
+    startTimer();
+    setBtnStatus({
+      startPauseBtn: 'pause',
+      passBuzzerBtn: 'pass',
+      fellResetBtn: 'fell',
+    });
+  };
+
+  const pause = () => {
+    setBtnStatus({
+      startPauseBtn: 'resume',
+      passBuzzerBtn: 'off',
+      fellResetBtn: 'reset',
+    });
+    pauseTimer();
+  };
+
+  const startPause = () => {
+    if (numOfObstacles > points.length) {
+      if (!isTimerOn) {
+        start();
+      } else {
+        pause();
+      }
+      setIsTimerOn((prev) => !prev);
+    } else {
+      // handleEnd(seconds, points);
+    }
+  };
+  return { seconds, btnStatus, startPause };
+};
