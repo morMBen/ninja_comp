@@ -1,24 +1,37 @@
-import { useTimerInterval } from '../hooks/timerInterval.hook';
-import './App.css';
-import "../packs/reusableUI_CSS_packs"
+import React from 'react';
+import { useStopWatchTimer } from '../hooks/timerInterval.hook';
 
 function App() {
-  const { time, restartTimer, startTimer, pauseTimer } = useTimerInterval(100);
+  const { seconds, points, splitReset, startPause, btnStatus } =
+    useStopWatchTimer(5, 50);
   return (
-    <div className='App'>
+    <>
       <h1>Hello World Ninja</h1>
-      <button
-        onClick={() => {
-          console.log(time);
-        }}
-      >
-        time
-      </button>
-      <button onClick={startTimer}>start time</button>
-      <button onClick={restartTimer}>restart time</button>
-      <button onClick={pauseTimer}>pause time</button>
-      {time.toFixed(2)}
-    </div>
+      <div>
+        <button
+          onClick={() => {
+            console.log(seconds.toFixed(2));
+          }}
+        >
+          time
+        </button>
+
+        <button
+          onClick={() =>
+            startPause((time: number, points: number[]) => {
+              console.log(time, points);
+            })
+          }
+        >
+          {btnStatus.splitResetBtn}
+        </button>
+        <button onClick={() => splitReset(() => true)}>
+          {btnStatus.startPauseBtn}
+        </button>
+        {seconds.toFixed(2)}
+      </div>
+      [ {points}]
+    </>
   );
 }
 
