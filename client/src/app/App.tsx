@@ -1,30 +1,11 @@
 import React from 'react';
-import {
-  useStopWatchTimer,
-  useSemiOfficialTimer,
-} from '../hooks/timerInterval.hook';
+import { useStopWatchTimer } from '../hooks/stopWatchTimer.hook';
 
 function App() {
-  const { seconds, btnStatus, startPause } = useSemiOfficialTimer(5, 50);
+  const { seconds, startPause, splitReset, points, btnStatus } = useStopWatchTimer(4, 50);
   return (
     <>
-      <h1>Hello World Ninja</h1>
       <div>
-        <button>{btnStatus.passBuzzerBtn}</button>
-        <button onClick={startPause}>{btnStatus.startPauseBtn}</button>
-        <button>{btnStatus.fellResetBtn}</button>
-      </div>
-      {seconds}
-      {/* [ {points}] */}
-      {/* <div>
-        <button
-          onClick={() => {
-            console.log(seconds.toFixed(2));
-          }}
-        >
-          time
-        </button>
-
         <button
           onClick={() =>
             startPause((time: number, points: number[]) => {
@@ -32,14 +13,12 @@ function App() {
             })
           }
         >
-          {btnStatus.splitResetBtn}
-        </button>
-        <button onClick={() => splitReset(() => true)}>
           {btnStatus.startPauseBtn}
         </button>
+        <button onClick={() => splitReset(() => true)}>{btnStatus.splitResetBtn}</button>
         {seconds.toFixed(2)}
       </div>
-      [ {points}] */}
+      [ {points}]
     </>
   );
 }
