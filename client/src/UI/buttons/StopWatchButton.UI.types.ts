@@ -1,8 +1,16 @@
-export type ButtonType = 'start' | 'pause' | 'reset' | 'end' | 'buzzer' | 'resume' | 'off';
+export type ButtonType =
+  | 'start'
+  | 'pause'
+  | 'split'
+  | 'reset'
+  | 'end'
+  | 'buzzer'
+  | 'resume'
+  | 'off';
 
 export type StopWatchButtonProps = {
   onClick?: () => void | boolean;
-  text: string;
+  text: ButtonType;
   buttonType: ButtonType;
 };
 export type WrapperProps = {

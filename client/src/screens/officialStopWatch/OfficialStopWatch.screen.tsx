@@ -1,14 +1,19 @@
 import React from 'react';
-import { useStopWatchTimer } from '../../hooks/timers/stopWatchTimer.hook';
+import { useOfficialTimer } from '../../hooks/timers/officialTimer.hook';
 import StopWatchButton from '../../UI/buttons/StopWatchButton.UI';
 import { ButtonType } from '../../UI/buttons/StopWatchButton.UI.types';
 import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
 import { secToString } from '../../utils/calc/ClockCalc';
-import { StopWatchProps } from './StopWatchScreen.types';
+import { OfficialStopWatchProps } from './OfficialStopWatchScreen.types';
 
-const StopWatchScreen: React.FC<StopWatchProps> = ({ numOfObstacles, competitorName }) => {
-  const { seconds, startPause, splitReset, btnStatus, points } = useStopWatchTimer(
+const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
+  numOfObstacles,
+  competitorName,
+  isOfficial,
+}) => {
+  const { seconds, startPause, passEnd, fellReset, btnStatus, points } = useOfficialTimer(
     numOfObstacles,
+    isOfficial,
     20
   );
   return (
@@ -25,14 +30,19 @@ const StopWatchScreen: React.FC<StopWatchProps> = ({ numOfObstacles, competitorN
       footer={
         <>
           <StopWatchButton
-            onClick={() => startPause(() => {})}
+            onClick={() => passEnd(() => {})}
+            text={btnStatus.passEndBtn as ButtonType}
+            buttonType={btnStatus.passEndBtn as ButtonType}
+          />
+          <StopWatchButton
+            onClick={() => startPause()}
             text={btnStatus.startPauseBtn as ButtonType}
             buttonType={btnStatus.startPauseBtn as ButtonType}
           />
           <StopWatchButton
-            onClick={() => splitReset(() => true)}
-            text={btnStatus.splitResetBtn as ButtonType}
-            buttonType={btnStatus.splitResetBtn as ButtonType}
+            onClick={() => fellReset(() => true)}
+            text={btnStatus.fellResetBtn as ButtonType}
+            buttonType={btnStatus.fellResetBtn as ButtonType}
           />
         </>
       }
@@ -40,4 +50,4 @@ const StopWatchScreen: React.FC<StopWatchProps> = ({ numOfObstacles, competitorN
   );
 };
 
-export default StopWatchScreen;
+export default OfficialStopWatchScreen;
