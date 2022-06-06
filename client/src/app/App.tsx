@@ -1,21 +1,51 @@
 import React from 'react';
-import { useStopWatchTimer } from '../hooks/timerInterval.hook';
+// import { useOfficialTimer } from '../hooks/timers/officialTimer.hook';
+import { useStopWatchTimer } from '../hooks/timers/stopWatchTimer.hook';
 
 function App() {
-  const { seconds, points, splitReset, startPause, btnStatus } =
-    useStopWatchTimer(5, 50);
+  const { seconds, startPause, splitReset, points, btnStatus } = useStopWatchTimer(4, 50);
+  // const {
+  //   seconds,
+  //   startPause,
+  //   passEnd,
+  //   fellReset,
+  //   points,
+  //   btnStatus: { startPauseBtn, passEndBtn, fellResetBtn },
+  // } = useOfficialTimer(4, false, 50);
   return (
     <>
-      <h1>Hello World Ninja</h1>
-      <div>
+      {/* <div>
         <button
-          onClick={() => {
-            console.log(seconds.toFixed(2));
-          }}
+          onClick={() =>
+            fellReset(() => {
+              const p = prompt('Create a memo');
+              return p === 'y' ? true : false;
+            })
+          }
         >
-          time
+          {fellResetBtn}
         </button>
-
+        <button onClick={() => startPause()}>{startPauseBtn}</button>
+        <button
+          onClick={() =>
+            passEnd((seconds, points) => {
+              console.log(seconds);
+              console.log(points);
+            })
+          }
+        >
+          {passEndBtn}
+        </button>
+        <h1>{seconds}</h1>
+        {points.map((p) => {
+          return (
+            <h6 key={p.seconds}>
+              {p.seconds} - {`${p.passed}`}
+            </h6>
+          );
+        })}
+      </div> */}
+      <div>
         <button
           onClick={() =>
             startPause((time: number, points: number[]) => {
@@ -23,14 +53,15 @@ function App() {
             })
           }
         >
-          {btnStatus.splitResetBtn}
-        </button>
-        <button onClick={() => splitReset(() => true)}>
           {btnStatus.startPauseBtn}
         </button>
+        <button onClick={() => splitReset(() => true)}>{btnStatus.splitResetBtn}</button>
         {seconds.toFixed(2)}
       </div>
-      [ {points}]
+
+      {points.map((point) => (
+        <h5 key={point.seconds}>{point.seconds}</h5>
+      ))}
     </>
   );
 }
