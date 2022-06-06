@@ -1,18 +1,25 @@
-import { Wrapper } from './Round.screen.styles';
-type Props = {
-  header?: JSX.Element;
-  body?: JSX.Element;
-  footer?: JSX.Element;
-};
+import StopWatchButton from '../../UI/buttons/StopWatchButton.UI';
+import { Wrapper, WrapperCenter } from './Round.screen.styles';
+import { RoundProps } from './Round.screen.types';
 
-const Round: React.FC<Props> = ({ header, body, footer }) => {
+const Round: React.FC<RoundProps> = ({ header, body, footer }) => {
   return (
     <Wrapper>
-      <div className='round-body'>
-        <div className='round-header'>{header}</div>
-        <div className='round-center'>{body}</div>
+      <div className='round__body'>
+        <div className='round__header'>{header}</div>
+        <div className='round__center'>{body}</div>
       </div>
-      <div className='round-buttons'>{footer}</div>
+      <div className='round__buttons'>
+        <WrapperCenter>
+          {
+            <>
+              <StopWatchButton text={'Start'} />
+              <StopWatchButton text={'Resume'} />
+              <StopWatchButton text={'Pause'} />
+            </>
+          }
+        </WrapperCenter>
+      </div>
     </Wrapper>
   );
 };

@@ -2,6 +2,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  --diff: calc(var(--max-size) - var(--min-size));
+  --responsive: calc(
+    (var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))
+  ); /* Ranges from 421px to 1199px */
 }
 body {
   margin: 0;
