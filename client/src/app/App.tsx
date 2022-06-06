@@ -1,13 +1,13 @@
 import React from 'react';
+import StopWatchScreen from '../screens/stopWatch/StopWatchScreen';
 // import { useStopWatchTimer } from '../hooks/timers/stopWatchTimer.hook';
-import Round from '../screens/round/Round.screen';
 
 function App() {
   // const { seconds, startPause, splitReset, points, btnStatus } = useStopWatchTimer(4, 50);
 
   return (
     <>
-      <Round header={<h1>Hola</h1>} body={<h1>Hola</h1>} footer={<h1>Hola</h1>} />
+      <StopWatchScreen competitorName='Mordi' numOfObstacles={4} />
       {/* <div>
         <button
           onClick={() =>

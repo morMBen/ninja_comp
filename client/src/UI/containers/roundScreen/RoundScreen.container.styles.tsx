@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
   .round__body {
     height: 100%;
     width: 70%;
-    background-color: blue;
   }
   .round__header {
     height: 25%;
@@ -16,15 +15,29 @@ export const Wrapper = styled.div`
     padding: 1rem;
   }
   .round__center {
+    color: white;
     padding: 1rem;
     height: 75%;
-    background-color: white;
+    background-image: var(--noise);
+    background-color: black;
   }
   .round__buttons {
+    position: relative;
     padding: 1rem;
     width: 30%;
     height: 100%;
-    background-color: red;
+    background-image: var(--noise);
+    background-color: var(--darkgray);
+  }
+  .round__buttons:after {
+    position: absolute;
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, var(--darkgray), var(--lightblue));
+    content: '.';
   }
   @media (max-height: 400px) {
   }
@@ -40,16 +53,13 @@ export const Wrapper = styled.div`
     }
     .round__header {
       height: 25%;
-      background-color: blue;
     }
     .round__center {
       height: 75%;
-      background-color: grey;
     }
     .round__buttons {
       width: 100%;
       height: 25%;
-      background-color: blue;
     }
   }
   /* Landscape */
