@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useReducer } from 'react';
 import { useTimerInterval } from './timerInterval.hook';
 
 // type StartPauseBtn = 'start' | 'pause' | 'off' | 'end';
@@ -9,25 +9,31 @@ enum watchActionKind {
   PAUSE = 'PAUSE',
   RESET = 'RESET',
   SPLIT = 'SPLIT',
-  SPLIT_TO_BUZZER = 'SPLIT_TO_BUZZER',
-  SPLIT_TO_END = 'SPLIT_TO_END',
+  SPLIT_ONE_BEFORE_LAST = 'SPLIT_ONE_BEFORE_LAST',
+  SPLIT_LAST_POINT = 'SPLIT_LAST_POINT',
+  TOGGLE_IS_TIMER_ON = 'TOGGLE_IS_TIMER_ON',
+}
+
+interface Point {
+  time: number;
+  passed: boolean;
 }
 
 interface I_WatchAction {
   type: watchActionKind;
-  payload: number;
+  payload?: any;
 }
 
 interface I_WatchState {
-  points: number[];
-  startPauseBtn: string;
-  splitResetBtn: string;
+  points: Point[];
+  btnStatus: { startPauseBtn: string; splitResetBtn: string };
+  isTimerOn: boolean;
 }
 
 const InitialState: I_WatchState = {
   points: [],
-  startPauseBtn: 'start',
-  splitResetBtn: 'off',
+  btnStatus: { startPauseBtn: 'start', splitResetBtn: 'off' },
+  isTimerOn: false,
 };
 
 function counterReducer(state: I_WatchState, action: I_WatchAction) {
@@ -36,20 +42,26 @@ function counterReducer(state: I_WatchState, action: I_WatchAction) {
     case watchActionKind.START:
       return {
         ...state,
-        startPauseBtn: 'pause',
-        splitResetBtn: 'split',
+        btnStatus: {
+          startPauseBtn: 'pause',
+          splitResetBtn: 'split',
+        },
       };
     case watchActionKind.PAUSE:
       return {
         ...state,
-        startPauseBtn: 'start',
-        splitResetBtn: 'reset',
+        btnStatus: {
+          startPauseBtn: 'start',
+          splitResetBtn: 'reset',
+        },
       };
     case watchActionKind.RESET:
       return {
         ...state,
-        startPauseBtn: 'start',
-        splitResetBtn: 'off',
+        btnStatus: {
+          startPauseBtn: 'start',
+          splitResetBtn: 'off',
+        },
         points: [],
       };
     case watchActionKind.SPLIT:
@@ -57,18 +69,26 @@ function counterReducer(state: I_WatchState, action: I_WatchAction) {
         ...state,
         points: [...state.points, payload],
       };
-    case watchActionKind.SPLIT_TO_BUZZER:
+    case watchActionKind.SPLIT_ONE_BEFORE_LAST:
       return {
         ...state,
-        splitResetBtn: 'buzzer',
+        btnStatus: { ...state.btnStatus, splitResetBtn: 'buzzer' },
         points: [...state.points, payload],
       };
-    case watchActionKind.SPLIT_TO_END:
+    case watchActionKind.SPLIT_LAST_POINT:
       return {
         ...state,
-        startPauseBtn: 'end',
-        splitResetBtn: 'reset',
+        btnStatus: {
+          startPauseBtn: 'end',
+          splitResetBtn: 'reset',
+        },
         points: [...state.points, payload],
+        isTimerOn: !state.isTimerOn,
+      };
+    case watchActionKind.TOGGLE_IS_TIMER_ON:
+      return {
+        ...state,
+        isTimerOn: !state.isTimerOn,
       };
     default:
       return { ...state };
@@ -77,61 +97,54 @@ function counterReducer(state: I_WatchState, action: I_WatchAction) {
 
 export const useStopWatchTimer = (numOfObstacles: number, fractionSpeed: number) => {
   const { seconds, startTimer, restartTimer, pauseTimer } = useTimerInterval(fractionSpeed);
-  const [{ startPauseBtn, splitResetBtn, points }, timerDispatch] = useReducer(
+  const [{ btnStatus, points, isTimerOn }, timerDispatch] = useReducer(
     counterReducer,
     InitialState
   );
-  const btnStatus = {
-    startPauseBtn,
-    splitResetBtn,
-  };
-  const [isTimerOn, setIsTimerOn] = useState(false);
-
   const start = () => {
     startTimer();
-    timerDispatch({ type: watchActionKind.START, payload: NaN });
+    timerDispatch({ type: watchActionKind.START });
   };
-
   const pause = () => {
-    timerDispatch({ type: watchActionKind.PAUSE, payload: NaN });
     pauseTimer();
+    timerDispatch({ type: watchActionKind.PAUSE });
   };
-
   const reset = () => {
-    timerDispatch({ type: watchActionKind.RESET, payload: NaN });
     restartTimer();
+    timerDispatch({ type: watchActionKind.RESET });
   };
   const split = () => {
     if (numOfObstacles === points.length + 1) {
-      timerDispatch({ type: watchActionKind.SPLIT_TO_END, payload: seconds });
       pauseTimer();
-      setIsTimerOn((prev) => !prev);
+      timerDispatch({ type: watchActionKind.SPLIT_LAST_POINT, payload: { seconds } });
     } else if (numOfObstacles === points.length + 2) {
-      timerDispatch({ type: watchActionKind.SPLIT_TO_BUZZER, payload: seconds });
+      timerDispatch({
+        type: watchActionKind.SPLIT_ONE_BEFORE_LAST,
+        payload: { seconds },
+      });
     } else {
-      timerDispatch({ type: watchActionKind.SPLIT, payload: seconds });
+      timerDispatch({ type: watchActionKind.SPLIT, payload: { seconds } });
     }
   };
   const startPause = (handleEnd: (time: number, points: number[]) => void) => {
-    if (numOfObstacles > points.length) {
-      if (!isTimerOn) {
-        start();
-      } else {
+    const isPassedAllObstacles = numOfObstacles > points.length;
+    if (isPassedAllObstacles) {
+      if (isTimerOn) {
         pause();
+      } else {
+        start();
       }
-      setIsTimerOn((prev) => !prev);
+      timerDispatch({ type: watchActionKind.TOGGLE_IS_TIMER_ON });
     } else {
       handleEnd(seconds, points);
     }
   };
-
   const splitReset = (handleReset: () => boolean) => {
-    if (!isTimerOn) {
-      handleReset() && reset();
-    } else {
+    if (isTimerOn) {
       split();
+    } else {
+      handleReset() && reset();
     }
   };
-
   return { seconds, points, splitReset, startPause, btnStatus };
 };
