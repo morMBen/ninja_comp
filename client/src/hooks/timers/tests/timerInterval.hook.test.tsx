@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { useTimerInterval } from './timerInterval.hook';
+import { useTimerInterval } from '../timerInterval.hook';
 
 describe('useTimerInterval', () => {
   it('checking default state', () => {
