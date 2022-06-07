@@ -149,7 +149,7 @@ export const useOfficialTimer = (
 
   const startPause = () => {
     const isPassedAllObstacles = numOfObstacles <= points.length;
-    if (!isPassedAllObstacles) {
+    if (!isPassedAllObstacles && !isFinished) {
       if (isTimerOn) {
         pause();
       } else {

@@ -61,6 +61,12 @@ export const Wrapper = styled.button(
       --box-shadow: var(--green);
       --box-shadow-light: var(--light-green);
     `}
+    ${buttonType === 'split' &&
+    css`
+      --box-shadow-dark: var(--dark-green);
+      --box-shadow: var(--green);
+      --box-shadow-light: var(--light-green);
+    `}
 
     ${buttonType === 'pause' &&
     css`
@@ -88,9 +94,15 @@ export const Wrapper = styled.button(
     `}
     ${buttonType === 'off' &&
     css`
-      background: none;
+      z-index: 1;
+      background-image: var(--noise);
+      background-color: var(--lightgrayTransparent);
       color: transparent;
-      border: none;
+      cursor: default;
+      /* border: solid 1px var(--lightgray); */
+      &:hover {
+        transform: none;
+      }
     `}
     ${buttonType === 'resume' &&
     css`

@@ -3,6 +3,7 @@ import { useOfficialTimer } from '../../hooks/timers/officialTimer.hook';
 import StopWatchButton from '../../UI/buttons/StopWatchButton.UI';
 import { ButtonType } from '../../UI/buttons/StopWatchButton.UI.types';
 import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
+import Heading from '../../UI/heading/Heading.UI';
 import { secToString } from '../../utils/calc/ClockCalc';
 import { OfficialStopWatchProps } from './OfficialStopWatchScreen.types';
 
@@ -21,9 +22,13 @@ const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
       header={<h2>{competitorName}</h2>}
       body={
         <>
-          <h1>{secToString(seconds)}</h1>
+          <Heading type='h1' styles={{ textAlign: 'center' }}>
+            {secToString(seconds)}
+          </Heading>
           {points.map((point, index) => (
-            <h3 key={index}>{secToString(point.seconds)} </h3>
+            <Heading type='h2' key={index}>
+              {secToString(point.seconds)} {`${point.passed}`}
+            </Heading>
           ))}
         </>
       }
