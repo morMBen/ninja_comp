@@ -6,7 +6,9 @@ export type ButtonType =
   | 'end'
   | 'buzzer'
   | 'resume'
-  | 'off';
+  | 'off'
+  | 'pass'
+  | 'fell';
 
 export type StopWatchButtonProps = {
   onClick?: () => void | boolean;

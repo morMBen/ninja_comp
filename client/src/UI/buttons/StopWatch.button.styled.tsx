@@ -3,6 +3,15 @@ import { WrapperProps } from './StopWatchButton.UI.types';
 
 export const Wrapper = styled.button(
   ({ buttonType }: WrapperProps) => css`
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms, color 0ms;
+    /* transition: color 0ms; */
+    border: 0;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+
     z-index: 2;
     width: 13vw;
     height: 13vw;
@@ -11,6 +20,15 @@ export const Wrapper = styled.button(
     --min-size: 20;
     font-size: var(--responsive);
     font-weight: bold;
+
+    background-color: var(--box-shadow-light);
+    box-shadow: var(--box-shadow-colors);
+    color: var(--box-shadow);
+    &:hover {
+      transform: scale(1.05) rotate(-1deg);
+      box-shadow: var(--box-shadow-colors-hover);
+    }
+
     /* Portrait */
     @media screen and (orientation: portrait) {
       /* Portrait styles */
@@ -30,21 +48,43 @@ export const Wrapper = styled.button(
     @media screen and (orientation: landscape) {
       /* Landscape styles */
     }
+
     ${buttonType === 'start' &&
     css`
-      background: var(--green);
+      --box-shadow-dark: var(--dark-green);
+      --box-shadow: var(--dark-green);
+      --box-shadow-light: var(--green);
     `}
+    ${buttonType === 'pass' &&
+    css`
+      --box-shadow-dark: var(--dark-green);
+      --box-shadow: var(--green);
+      --box-shadow-light: var(--light-green);
+    `}
+
     ${buttonType === 'pause' &&
     css`
-      background: var(--yellow);
+      --box-shadow-dark: var(--dark-yellow);
+      --box-shadow: var(--yellow);
+      --box-shadow-light: var(--light-yellow);
     `}
     ${buttonType === 'reset' &&
     css`
-      background: var(--red);
+      --box-shadow-dark: var(--dark-red);
+      --box-shadow: var(--dark-red);
+      --box-shadow-light: var(--red);
+    `}
+    ${buttonType === 'fell' &&
+    css`
+      --box-shadow-dark: var(--dark-red);
+      --box-shadow: var(--red);
+      --box-shadow-light: var(--light-red);
     `}
     ${buttonType === 'end' &&
     css`
-      background: var(--blue);
+      --box-shadow-dark: var(--dark-blue);
+      --box-shadow: var(--blue);
+      --box-shadow-light: var(--light-blue);
     `}
     ${buttonType === 'off' &&
     css`
@@ -54,11 +94,15 @@ export const Wrapper = styled.button(
     `}
     ${buttonType === 'resume' &&
     css`
-      background: var(--green);
+      --box-shadow-dark: var(--dark-green);
+      --box-shadow: var(--dark-green);
+      --box-shadow-light: var(--green);
     `}
-    ${buttonType === 'buzzer' &&
+      ${buttonType === 'buzzer' &&
     css`
-      background: var(--lightblue);
+      --box-shadow-dark: var(--dark-grey-blue);
+      --box-shadow: var(--grey-blue);
+      --box-shadow-light: var(--light-grey-blue);
     `}
   `
 );
