@@ -147,7 +147,7 @@ export const useStopWatchTimer = (numOfObstacles: number, fractionSpeed: number)
     if (isTimerOn) {
       split();
     } else {
-      handleReset(reset()) && reset();
+      handleReset(reset);
     }
   };
   return { seconds, points, splitReset, startPause, btnStatus };

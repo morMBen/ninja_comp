@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import { HandleReset } from './stopWatchTimer.hook';
 import { useTimerInterval } from './timerInterval.hook';
 
 // type StartPauseBtn = 'start' | 'pause' | 'off' | 'end';
@@ -166,7 +167,7 @@ export const useOfficialTimer = (
     }
   };
 
-  const fellReset = (callback: () => boolean) => {
+  const fellReset = (handleReset: HandleReset) => {
     if (isTimerOn) {
       if (isOfficial) {
         pauseTimer();
@@ -175,7 +176,7 @@ export const useOfficialTimer = (
         split(false);
       }
     } else if (seconds > 0) {
-      callback() && reset();
+      handleReset(reset);
     }
   };
 

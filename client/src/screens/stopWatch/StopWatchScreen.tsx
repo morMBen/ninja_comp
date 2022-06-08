@@ -42,7 +42,7 @@ const StopWatchScreen: React.FC<StopWatchProps> = ({
             buttonType={btnStatus.startPauseBtn as ButtonType}
           />
           <StopWatchButton
-            onClick={() => splitReset(() => true)}
+            onClick={() => splitReset(handleReset)}
             text={btnStatus.splitResetBtn as ButtonType}
             buttonType={btnStatus.splitResetBtn as ButtonType}
           />

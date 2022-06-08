@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import InsertTimerScreen from '../../components/insertTimerScreen/InsertTimerScreen';
-import Banner from '../../UI/bunner/Banner';
-import SquareButton from '../../UI/buttons/squareButton/SquareButton.UI';
 import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
 import Heading from '../../UI/heading/Heading.UI';
+import ResetSpeedRoundScreenBanner from './banners/ResetSpeedRound.screen.banner';
 import SpeedRoundScreenFrom from './form/SpeedRound.screen.form';
 import { RoundDetailsType } from './SpeedRound.screen.types';
 
 function SpeedRoundScreen() {
   const [isTimerOn, setIsTimerOn] = useState<boolean>(false);
-  const [isResetBannerOn, setIsResetBannerOn] = useState<boolean>(false);
-  const [choose, setChoose] = useState<boolean>(false);
+  const [resetBanner, setResetBanner] = useState<JSX.Element | null>(null);
   const [{ numOfObstacles, roundType, name }, setRoundDetails] = useState<RoundDetailsType>({
     roundType: 'official',
     numOfObstacles: 0,
@@ -56,41 +54,15 @@ function SpeedRoundScreen() {
     );
   };
 
-  const handleReset = () => {
-    setIsResetBannerOn(true);
-    return choose;
-  };
-
-  const insertResetBanner = () => {
-    return (
-      <Banner
-        heading={
-          <>
-            <Heading type='h2'>Are you sure?</Heading>
-          </>
-        }
-        buttons={
-          <>
-            <SquareButton type={'approve'} onClick={() => {}}>
-              Yes
-            </SquareButton>
-            <SquareButton type={'cancel'} onClick={() => {}}>
-              No
-            </SquareButton>
-          </>
-        }
-        footer={
-          <>
-            <Heading type='h4'>If you click Yes, you will not be able to recover the data.</Heading>
-          </>
-        }
-      />
+  const handleResetBanner = (resetCallback: () => void) => {
+    setResetBanner(
+      <ResetSpeedRoundScreenBanner resetCallback={resetCallback} setResetBanner={setResetBanner} />
     );
   };
 
   return (
     <>
-      {isResetBannerOn && insertResetBanner()}
+      {resetBanner && resetBanner}
       {!isTimerOn && insertSpeedRoundSelectionScreen()}
       {isTimerOn && (
         <InsertTimerScreen
@@ -99,7 +71,7 @@ function SpeedRoundScreen() {
           name={name}
           setIsTimerOn={setIsTimerOn}
           handleEnd={() => {}}
-          handleReset={handleReset}
+          handleReset={handleResetBanner}
         />
       )}
     </>
