@@ -12,7 +12,6 @@ export const Wrapper = styled.button(
     -webkit-user-select: none;
     touch-action: manipulation;
 
-    z-index: 2;
     width: 13vw;
     height: 13vw;
     border-radius: 50%;
@@ -94,7 +93,6 @@ export const Wrapper = styled.button(
     `}
     ${buttonType === 'off' &&
     css`
-      z-index: 1;
       background-image: var(--noise);
       background-color: var(--lightgrayTransparent);
       color: transparent;

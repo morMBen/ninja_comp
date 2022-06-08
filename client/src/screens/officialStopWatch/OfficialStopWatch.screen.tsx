@@ -1,6 +1,4 @@
 import React from 'react';
-import { useOfficialStopWatchContent } from '../../contexts/OfficialStopWatch.context';
-// import { useOfficialStopWatchContent } from '../../contexts/OfficialStopWatch.context';
 import { useOfficialTimer } from '../../hooks/timers/officialTimer.hook';
 import StopWatchButton from '../../UI/buttons/StopWatchButton/StopWatchButton.UI';
 import { ButtonType } from '../../UI/buttons/StopWatchButton/StopWatchButton.UI.types';
@@ -14,6 +12,8 @@ const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
   competitorName,
   isOfficial,
   setIsTimerOn,
+  handleEnd,
+  handleReset,
 }) => {
   const { seconds, startPause, passEnd, fellReset, btnStatus, points } = useOfficialTimer(
     numOfObstacles,
@@ -43,7 +43,7 @@ const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
       footer={
         <>
           <StopWatchButton
-            onClick={() => passEnd(() => {})}
+            onClick={() => passEnd(handleEnd)}
             text={btnStatus.passEndBtn as ButtonType}
             buttonType={btnStatus.passEndBtn as ButtonType}
           />
@@ -53,7 +53,7 @@ const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
             buttonType={btnStatus.startPauseBtn as ButtonType}
           />
           <StopWatchButton
-            onClick={() => fellReset(() => true)}
+            onClick={() => fellReset(handleReset)}
             text={btnStatus.fellResetBtn as ButtonType}
             buttonType={btnStatus.fellResetBtn as ButtonType}
           />

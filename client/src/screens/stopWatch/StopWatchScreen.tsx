@@ -10,11 +10,14 @@ const StopWatchScreen: React.FC<StopWatchProps> = ({
   numOfObstacles,
   competitorName,
   setIsTimerOn,
+  handleEnd,
+  handleReset,
 }) => {
   const { seconds, startPause, splitReset, btnStatus, points } = useStopWatchTimer(
     numOfObstacles,
     20
   );
+
   return (
     <RoundScreen
       header={

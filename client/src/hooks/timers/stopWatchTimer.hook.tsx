@@ -4,6 +4,10 @@ import { useTimerInterval } from './timerInterval.hook';
 // type StartPauseBtn = 'start' | 'pause' | 'off' | 'end';
 // type SplitResetBtn = 'reset' | 'split' | 'off' | 'buzzer';
 
+export type HandleEnd = (seconds: number, points: Point[]) => void;
+
+export type HandleReset = (callback: () => void) => void;
+
 enum watchActionKind {
   START = 'START',
   PAUSE = 'PAUSE',
@@ -14,8 +18,8 @@ enum watchActionKind {
   TOGGLE_IS_TIMER_ON = 'TOGGLE_IS_TIMER_ON',
 }
 
-interface Point {
-  time: number;
+export interface Point {
+  seconds: number;
   passed: boolean;
 }
 
@@ -126,7 +130,7 @@ export const useStopWatchTimer = (numOfObstacles: number, fractionSpeed: number)
       timerDispatch({ type: watchActionKind.SPLIT, payload: { seconds } });
     }
   };
-  const startPause = (handleEnd: (time: number, points: number[]) => void) => {
+  const startPause = (handleEnd: HandleEnd) => {
     const isPassedAllObstacles = numOfObstacles > points.length;
     if (isPassedAllObstacles) {
       if (isTimerOn) {
@@ -139,11 +143,11 @@ export const useStopWatchTimer = (numOfObstacles: number, fractionSpeed: number)
       handleEnd(seconds, points);
     }
   };
-  const splitReset = (handleReset: () => boolean) => {
+  const splitReset = (handleReset: HandleReset) => {
     if (isTimerOn) {
       split();
     } else {
-      handleReset() && reset();
+      handleReset(reset()) && reset();
     }
   };
   return { seconds, points, splitReset, startPause, btnStatus };

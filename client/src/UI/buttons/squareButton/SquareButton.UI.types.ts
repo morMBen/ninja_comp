@@ -1,4 +1,4 @@
-type SquareButtonTypes = 'default' | 'start' | 'buzzer' | 'stop';
+type SquareButtonTypes = 'default' | 'approve' | 'cancel' | 'stop';
 type SquareButtonHandlers = {
   onSubmit: () => {};
 };

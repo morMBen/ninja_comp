@@ -7,6 +7,8 @@ const InsertTimerScreen: React.FC<InsertTimerScreenProps> = ({
   roundType,
   name,
   setIsTimerOn,
+  handleEnd,
+  handleReset,
 }) => {
   if (roundType === 'stopwatch') {
     return (
@@ -14,6 +16,8 @@ const InsertTimerScreen: React.FC<InsertTimerScreenProps> = ({
         setIsTimerOn={setIsTimerOn}
         competitorName={name}
         numOfObstacles={numOfObstacles}
+        handleEnd={handleEnd}
+        handleReset={handleReset}
       />
     );
   }
@@ -24,6 +28,8 @@ const InsertTimerScreen: React.FC<InsertTimerScreenProps> = ({
         isOfficial={true}
         competitorName={name}
         numOfObstacles={numOfObstacles}
+        handleEnd={handleEnd}
+        handleReset={handleReset}
       />
     );
   }
@@ -34,6 +40,8 @@ const InsertTimerScreen: React.FC<InsertTimerScreenProps> = ({
         isOfficial={false}
         competitorName={name}
         numOfObstacles={numOfObstacles}
+        handleEnd={handleEnd}
+        handleReset={handleReset}
       />
     );
   }
