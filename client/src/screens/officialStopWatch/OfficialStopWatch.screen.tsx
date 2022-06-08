@@ -1,4 +1,5 @@
 import React from 'react';
+import ScoresDisplay from '../../components/scoresDisplay/ScoresDisplay';
 import { useOfficialTimer } from '../../hooks/timers/officialTimer.hook';
 import StopWatchButton from '../../UI/buttons/StopWatchButton/StopWatchButton.UI';
 import { ButtonType } from '../../UI/buttons/StopWatchButton/StopWatchButton.UI.types';
@@ -30,14 +31,7 @@ const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
       }
       body={
         <>
-          <Heading type='h1' styles={{ textAlign: 'center' }}>
-            {secToString(seconds)}
-          </Heading>
-          {points.map((point, index) => (
-            <Heading type='h2' key={index}>
-              {secToString(point.seconds)} {`${point.passed}`}
-            </Heading>
-          ))}
+          <ScoresDisplay points={points} seconds={seconds} />
         </>
       }
       footer={
