@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStopWatchTimer } from '../../hooks/timers/stopWatchTimer.hook';
-import StopWatchButton from '../../UI/buttons/StopWatchButton.UI';
-import { ButtonType } from '../../UI/buttons/StopWatchButton.UI.types';
+import StopWatchButton from '../../UI/buttons/StopWatchButton/StopWatchButton.UI';
+import { ButtonType } from '../../UI/buttons/StopWatchButton/StopWatchButton.UI.types';
 import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
 import { secToString } from '../../utils/calc/ClockCalc';
 import { StopWatchProps } from './StopWatchScreen.types';

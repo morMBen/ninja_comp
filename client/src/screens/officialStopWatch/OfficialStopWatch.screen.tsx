@@ -1,7 +1,9 @@
 import React from 'react';
+import { useOfficialStopWatchContent } from '../../contexts/OfficialStopWatch.context';
+// import { useOfficialStopWatchContent } from '../../contexts/OfficialStopWatch.context';
 import { useOfficialTimer } from '../../hooks/timers/officialTimer.hook';
-import StopWatchButton from '../../UI/buttons/StopWatchButton.UI';
-import { ButtonType } from '../../UI/buttons/StopWatchButton.UI.types';
+import StopWatchButton from '../../UI/buttons/StopWatchButton/StopWatchButton.UI';
+import { ButtonType } from '../../UI/buttons/StopWatchButton/StopWatchButton.UI.types';
 import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
 import Heading from '../../UI/heading/Heading.UI';
 import { secToString } from '../../utils/calc/ClockCalc';

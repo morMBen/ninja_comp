@@ -1,4 +1,5 @@
 import React from 'react';
+import { Wrapper } from './Heading.UI.style';
 import { HeadingProps } from './Heading.UI.types';
 
 const Heading: React.FC<React.PropsWithChildren<HeadingProps>> = ({
@@ -10,9 +11,11 @@ const Heading: React.FC<React.PropsWithChildren<HeadingProps>> = ({
 }) => {
   const CustomTag = `${type}` as keyof JSX.IntrinsicElements;
   return (
-    <CustomTag style={styles} {...handlers} data-mode={mode} data-type={type}>
-      {children}
-    </CustomTag>
+    <Wrapper>
+      <CustomTag style={styles} {...handlers} data-mode={mode} data-type={type}>
+        {children}
+      </CustomTag>
+    </Wrapper>
   );
 };
 

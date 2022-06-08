@@ -1,4 +1,4 @@
-import { ButtonType } from '../../UI/buttons/StopWatchButton.UI.types';
+import { ButtonType } from '../../UI/buttons/StopWatchButton/StopWatchButton.UI.types';
 
 export const stopWatchButtonToHebrew = (str: ButtonType) => {
   switch (str) {

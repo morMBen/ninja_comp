@@ -29,7 +29,21 @@ export const Wrapper = styled.div`
   @media screen and (orientation: landscape) {
     .SpeedRoundScreenFrom {
       flex-direction: row;
-      margin: 0 0.2rem;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .SpeedRoundScreenFrom {
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .SpeedRoundScreenFrom__box > * {
+      margin: 0.2rem;
+    }
+    @media screen and (orientation: landscape) {
+      .SpeedRoundScreenFrom__box {
+        margin: 0 1rem;
+      }
     }
   }
 `;

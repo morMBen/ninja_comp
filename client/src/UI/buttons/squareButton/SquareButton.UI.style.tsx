@@ -12,7 +12,9 @@ export const Wrapper = styled.button`
   transition: 200ms;
   box-sizing: border-box;
   border: 0;
-  font-size: 16px;
+  --max-size: 20;
+  --min-size: 12;
+  font-size: var(--responsive);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;

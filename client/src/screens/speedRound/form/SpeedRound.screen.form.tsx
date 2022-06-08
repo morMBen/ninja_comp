@@ -58,7 +58,7 @@ const SpeedRoundScreenFrom: React.FC<SpeedRoundScreenFromProps> = ({
         <div className='SpeedRoundScreenFrom__box'>
           <Heading type={'h5'}>Competitor Name:</Heading>
           <Input type='name' onChange={handleOnChange} value={name} />
-
+          <br />
           <SquareButton onClick={handleStart}>on</SquareButton>
         </div>
       </div>

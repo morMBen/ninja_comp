@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.select`
+  --max-size: 20;
+  --min-size: 12;
+  font-size: var(--responsive);
   padding: 0.5rem;
   outline: none;
   border: none;

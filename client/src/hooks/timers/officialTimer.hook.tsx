@@ -15,8 +15,8 @@ enum watchActionKind {
   TOGGLE_IS_TIMER_ON = 'TOGGLE_IS_TIMER_ON',
 }
 
-interface Point {
-  time: number;
+export interface Point {
+  seconds: number;
   passed: boolean;
 }
 
@@ -165,6 +165,7 @@ export const useOfficialTimer = (
       split(true);
     }
   };
+
   const fellReset = (callback: () => boolean) => {
     if (isTimerOn) {
       if (isOfficial) {
