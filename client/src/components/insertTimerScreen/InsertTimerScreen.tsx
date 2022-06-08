@@ -1,5 +1,5 @@
-import OfficialStopWatchScreen from '../../officialStopWatch/OfficialStopWatch.screen';
-import StopWatchScreen from '../../stopWatch/StopWatchScreen';
+import OfficialStopWatchScreen from '../../screens/officialStopWatch/OfficialStopWatch.screen';
+import StopWatchScreen from '../../screens/stopWatch/StopWatchScreen';
 import { InsertTimerScreenProps } from './InsertTimerScreen.types';
 
 const InsertTimerScreen: React.FC<InsertTimerScreenProps> = ({

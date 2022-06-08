@@ -1,4 +1,4 @@
-import { RoundType } from '../SpeedRound.screen.types';
+import { RoundType } from '../../screens/speedRound/SpeedRound.screen.types';
 
 export type InsertTimerScreenProps = {
   numOfObstacles: number;

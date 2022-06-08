@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
 import Heading from '../../UI/heading/Heading.UI';
-import OfficialStopWatchScreen from '../officialStopWatch/OfficialStopWatch.screen';
-import StopWatchScreen from '../stopWatch/StopWatchScreen';
+import InsertTimerScreen from '../../components/insertTimerScreen/InsertTimerScreen';
 import SpeedRoundScreenFrom from './form/SpeedRound.screen.form';
-import InsertTimerScreen from './insertTimer/InsertTimerScreen';
-import { RoundDetailsType, RoundType } from './SpeedRound.screen.types';
+import { RoundDetailsType } from './SpeedRound.screen.types';
 
 function SpeedRoundScreen() {
   const [isTimerOn, setIsTimerOn] = useState<boolean>(false);
