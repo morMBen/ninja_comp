@@ -4,6 +4,7 @@ import Heading from '../../UI/heading/Heading.UI';
 import OfficialStopWatchScreen from '../officialStopWatch/OfficialStopWatch.screen';
 import StopWatchScreen from '../stopWatch/StopWatchScreen';
 import SpeedRoundScreenFrom from './form/SpeedRound.screen.form';
+import InsertTimerScreen from './insertTimer/InsertTimerScreen';
 import { RoundDetailsType, RoundType } from './SpeedRound.screen.types';
 
 function SpeedRoundScreen() {
@@ -14,31 +15,6 @@ function SpeedRoundScreen() {
     numOfObstacles: 0,
     name: '',
   });
-
-  const insertTimerScreen = (numOfObstacles: number, roundType: RoundType, name: string) => {
-    console.log(roundType);
-    if (roundType === 'stopwatch') {
-      return <StopWatchScreen competitorName={name} numOfObstacles={numOfObstacles} />;
-    }
-    if (roundType === 'official') {
-      return (
-        <OfficialStopWatchScreen
-          isOfficial={true}
-          competitorName={name}
-          numOfObstacles={numOfObstacles}
-        />
-      );
-    }
-    if (roundType === 'semi-official') {
-      return (
-        <OfficialStopWatchScreen
-          isOfficial={false}
-          competitorName={name}
-          numOfObstacles={numOfObstacles}
-        />
-      );
-    }
-  };
 
   const insertSpeedRoundSelectionScreen = () => {
     return (
@@ -82,7 +58,14 @@ function SpeedRoundScreen() {
   return (
     <>
       {!isTimerOn && insertSpeedRoundSelectionScreen()}
-      {isTimerOn && insertTimerScreen(numOfObstacles, roundType, name)}
+      {isTimerOn && (
+        <InsertTimerScreen
+          numOfObstacles={numOfObstacles}
+          roundType={roundType}
+          name={name}
+          setIsTimerOn={setIsTimerOn}
+        />
+      )}
     </>
   );
 }

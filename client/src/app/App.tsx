@@ -10,20 +10,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<SpeedRoundScreen />} />
-          <Route
-            path='/officiall'
-            element={
-              <OfficialStopWatchScreen
-                isOfficial={true}
-                competitorName='Mordi'
-                numOfObstacles={4}
-              />
-            }
-          />
-          <Route
-            path='/official'
-            element={<StopWatchScreen competitorName='Mordi' numOfObstacles={4} />}
-          />
         </Routes>
       </BrowserRouter>
     </>

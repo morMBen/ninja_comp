@@ -13,6 +13,7 @@ const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
   numOfObstacles,
   competitorName,
   isOfficial,
+  setIsTimerOn,
 }) => {
   const { seconds, startPause, passEnd, fellReset, btnStatus, points } = useOfficialTimer(
     numOfObstacles,
@@ -21,7 +22,12 @@ const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
   );
   return (
     <RoundScreen
-      header={<h2>{competitorName}</h2>}
+      header={
+        <>
+          <button onClick={() => setIsTimerOn(false)}>X</button>
+          <h2>{competitorName}</h2>
+        </>
+      }
       body={
         <>
           <Heading type='h1' styles={{ textAlign: 'center' }}>

@@ -6,14 +6,23 @@ import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
 import { secToString } from '../../utils/calc/ClockCalc';
 import { StopWatchProps } from './StopWatchScreen.types';
 
-const StopWatchScreen: React.FC<StopWatchProps> = ({ numOfObstacles, competitorName }) => {
+const StopWatchScreen: React.FC<StopWatchProps> = ({
+  numOfObstacles,
+  competitorName,
+  setIsTimerOn,
+}) => {
   const { seconds, startPause, splitReset, btnStatus, points } = useStopWatchTimer(
     numOfObstacles,
     20
   );
   return (
     <RoundScreen
-      header={<h2>{competitorName}</h2>}
+      header={
+        <>
+          <button onClick={() => setIsTimerOn(false)}>X</button>
+          <h2>{competitorName}</h2>
+        </>
+      }
       body={
         <>
           <h1>{secToString(seconds)}</h1>
