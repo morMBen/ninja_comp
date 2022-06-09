@@ -120,14 +120,14 @@ export const useStopWatchTimer = (numOfObstacles: number, fractionSpeed: number)
   const split = () => {
     if (numOfObstacles === points.length + 1) {
       pauseTimer();
-      timerDispatch({ type: watchActionKind.SPLIT_LAST_POINT, payload: { seconds } });
+      timerDispatch({ type: watchActionKind.SPLIT_LAST_POINT, payload: { seconds, passed: true } });
     } else if (numOfObstacles === points.length + 2) {
       timerDispatch({
         type: watchActionKind.SPLIT_ONE_BEFORE_LAST,
-        payload: { seconds },
+        payload: { seconds, passed: true },
       });
     } else {
-      timerDispatch({ type: watchActionKind.SPLIT, payload: { seconds } });
+      timerDispatch({ type: watchActionKind.SPLIT, payload: { seconds, passed: true } });
     }
   };
   const startPause = (handleEnd: HandleEnd) => {

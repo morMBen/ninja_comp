@@ -2,6 +2,12 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.span(
   () => css`
+    &[data-type='light-green'] {
+      color: var(--light-green);
+    }
+    &[data-type='light-red'] {
+      color: var(--light-red);
+    }
     &[data-type='decorationLine'] {
       position: relative;
       &:before {
@@ -19,7 +25,7 @@ export const Wrapper = styled.span(
         -ms-transform: rotate(5deg);
         -o-transform: rotate(5deg);
         transform: rotate(5deg);
-        color: #ff00009e;
+        color: var(--red);
       }
       /* text-decoration-line: line-through;
       text-decoration-color: red;

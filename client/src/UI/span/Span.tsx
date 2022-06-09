@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wrapper } from './Span.style';
 
-type SpanPropsType = 'none' | 'decorationLine';
+type SpanPropsType = 'none' | 'decorationLine' | 'light-green' | 'light-red';
 
 type SpanProps = {
   children: JSX.Element;

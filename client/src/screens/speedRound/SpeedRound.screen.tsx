@@ -20,10 +20,10 @@ function SpeedRoundScreen() {
       <RoundScreen
         header={
           <>
-            <Heading type='h1' styles={{ color: 'white' }}>
+            <Heading headingType='h1' styles={{ color: 'white' }}>
               Fast Round
             </Heading>
-            <Heading type='h4' styles={{ color: 'white' }}>
+            <Heading headingType='h4' styles={{ color: 'white' }}>
               {` Just insert competitor name, choose type and number of obstacles.
                and go...`}
             </Heading>
@@ -36,15 +36,15 @@ function SpeedRoundScreen() {
         }
         footer={
           <>
-            <Heading type='h6' styles={{ color: 'white' }}>
+            <Heading headingType='h6' styles={{ color: 'white' }}>
               Official Round: fslf sadfs aldfsadlfj fslf sadfs aldfsadlfjfslf sadfs aldfsadlfj fslf
               sadfs aldfsadlfj{' '}
             </Heading>
-            <Heading type='h6' styles={{ color: 'white' }}>
+            <Heading headingType='h6' styles={{ color: 'white' }}>
               <span style={{ color: 'black' }}>Semi Official Round:</span> fslf sadfs aldfsadlfj
               fslf sadfs aldfsadlfjfslf sadfs aldfsadlfj fslf sadfs aldfsadlfj{' '}
             </Heading>
-            <Heading type='h6' styles={{ color: 'white' }}>
+            <Heading headingType='h6' styles={{ color: 'white' }}>
               Official Round: fslf sadfs aldfsadlfj fslf sadfs aldfsadlfjfslf sadfs aldfsadlfj fslf
               sadfs aldfsadlfj{' '}
             </Heading>

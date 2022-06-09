@@ -5,16 +5,22 @@ import { secToString } from '../../utils/calc/ClockCalc';
 import { Wrapper } from './ScoreDisplay.styles';
 import { ScoresDisplayProps } from './ScoreDisplay.types';
 
-const ScoresDisplay: React.FC<ScoresDisplayProps> = ({ points, seconds }) => {
+const ScoresDisplay: React.FC<ScoresDisplayProps> = ({ points, seconds, numOfObstacles }) => {
   return (
     <Wrapper>
       <div className='scores-display-card__seconds'>
-        <Heading type='h1'>{secToString(seconds)}</Heading>
+        <Heading headingType='h1'>{secToString(seconds)}</Heading>
       </div>
       <div className='scores-display-card'>
         {points.map((point, index) => (
-          <Heading type='h2' key={index}>
-            {index + 1}) &nbsp;
+          <Heading
+            headingType='h2'
+            key={index}
+            styles={numOfObstacles === index + 1 ? { color: 'var(--light-yellow)' } : undefined}
+          >
+            {index < 9 && <>&nbsp;</>} &nbsp;
+            {index + 1}
+            {index < 9 && <>&nbsp;</>}) &nbsp;
             <Span type={point.passed ? 'none' : 'decorationLine'}>
               <>
                 &nbsp;
@@ -22,17 +28,6 @@ const ScoresDisplay: React.FC<ScoresDisplayProps> = ({ points, seconds }) => {
                 &nbsp;
               </>
             </Span>
-            {/* <span
-              style={{
-                textDecorationLine: point.passed ? 'none' : 'line-through',
-                textDecorationColor: 'red',
-                textDecorationThickness: '0.15em',
-              }}
-            >
-              &nbsp;
-              {secToString(point.seconds)}
-              &nbsp;
-            </span> */}
             <>&nbsp;&nbsp;&nbsp;&nbsp;</>
           </Heading>
         ))}

@@ -4,6 +4,7 @@ import { WrapperProps } from './StopWatchButton.UI.types';
 export const Wrapper = styled.button(
   ({ buttonType }: WrapperProps) => css`
     cursor: pointer;
+    z-index: 2;
     text-align: center;
     text-decoration: none;
     transition: all 250ms, color 0ms;
@@ -93,6 +94,7 @@ export const Wrapper = styled.button(
     `}
     ${buttonType === 'off' &&
     css`
+      z-index: 1;
       background-image: var(--noise);
       background-color: var(--lightgrayTransparent);
       color: transparent;

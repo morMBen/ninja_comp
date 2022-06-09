@@ -3,13 +3,14 @@ import { Wrapper } from './Heading.UI.style';
 import { HeadingProps } from './Heading.UI.types';
 
 const Heading: React.FC<React.PropsWithChildren<HeadingProps>> = ({
-  type,
+  headingType,
   handlers,
   mode = 'light',
   styles,
   children,
+  type,
 }) => {
-  const CustomTag = `${type}` as keyof JSX.IntrinsicElements;
+  const CustomTag = `${headingType}` as keyof JSX.IntrinsicElements;
   return (
     <Wrapper>
       <CustomTag style={styles} {...handlers} data-mode={mode} data-type={type}>

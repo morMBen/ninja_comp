@@ -40,14 +40,14 @@ const SpeedRoundScreenFrom: React.FC<SpeedRoundScreenFromProps> = ({
       <div className='SpeedRoundScreenFrom'>
         {' '}
         <div className='SpeedRoundScreenFrom__box'>
-          <Heading type={'h5'}>Number Of Obstacles:</Heading>
+          <Heading headingType={'h5'}>Number Of Obstacles:</Heading>
           <SelectUI
             onChange={handleOnChange}
             type='numOfObstacles'
             options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
             value={numOfObstacles.toString()}
           />
-          <Heading type={'h5'}>Round Type:</Heading>
+          <Heading headingType={'h5'}>Round Type:</Heading>
           <SelectUI
             onChange={handleOnChange}
             type={'roundType'}
@@ -56,7 +56,7 @@ const SpeedRoundScreenFrom: React.FC<SpeedRoundScreenFromProps> = ({
           />
         </div>
         <div className='SpeedRoundScreenFrom__box'>
-          <Heading type={'h5'}>Competitor Name:</Heading>
+          <Heading headingType={'h5'}>Competitor Name:</Heading>
           <Input type='name' onChange={handleOnChange} value={name} />
           <br />
           <SquareButton onClick={handleStart}>on</SquareButton>

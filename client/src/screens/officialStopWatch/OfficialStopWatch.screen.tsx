@@ -4,8 +4,6 @@ import { useOfficialTimer } from '../../hooks/timers/officialTimer.hook';
 import StopWatchButton from '../../UI/buttons/StopWatchButton/StopWatchButton.UI';
 import { ButtonType } from '../../UI/buttons/StopWatchButton/StopWatchButton.UI.types';
 import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
-import Heading from '../../UI/heading/Heading.UI';
-import { secToString } from '../../utils/calc/ClockCalc';
 import { OfficialStopWatchProps } from './OfficialStopWatchScreen.types';
 
 const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
@@ -31,7 +29,7 @@ const OfficialStopWatchScreen: React.FC<OfficialStopWatchProps> = ({
       }
       body={
         <>
-          <ScoresDisplay points={points} seconds={seconds} />
+          <ScoresDisplay points={points} seconds={seconds} numOfObstacles={numOfObstacles} />
         </>
       }
       footer={

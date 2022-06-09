@@ -12,7 +12,7 @@ const ResetSpeedRoundScreenBanner: React.FC<Props> = ({ resetCallback, setResetB
     <Banner
       heading={
         <>
-          <Heading type='h2'>Are you sure?</Heading>
+          <Heading headingType='h2'>Are you sure?</Heading>
         </>
       }
       buttons={
@@ -38,7 +38,9 @@ const ResetSpeedRoundScreenBanner: React.FC<Props> = ({ resetCallback, setResetB
       }
       footer={
         <>
-          <Heading type='h4'>If you click Yes, you will not be able to recover the data.</Heading>
+          <Heading headingType='h4'>
+            If you click Yes, you will not be able to recover the data.
+          </Heading>
         </>
       }
     />

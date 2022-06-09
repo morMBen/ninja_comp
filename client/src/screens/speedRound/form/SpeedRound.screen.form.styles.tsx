@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
     flex-direction: column;
   }
   .SpeedRoundScreenFrom__box > * {
-    margin: 0.5rem;
+    padding: 0.3rem;
   }
 
   @media screen and (orientation: landscape) {
