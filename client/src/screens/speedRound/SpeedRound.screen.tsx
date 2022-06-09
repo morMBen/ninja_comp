@@ -20,8 +20,8 @@ function SpeedRoundScreen() {
       <RoundScreen
         header={
           <>
-            <Heading headingType='h1' styles={{ color: 'white' }}>
-              Fast Round
+            <Heading headingType='h2' styles={{ color: 'white' }}>
+              Fast Round:
             </Heading>
             <Heading headingType='h4' styles={{ color: 'white' }}>
               {` Just insert competitor name, choose type and number of obstacles.

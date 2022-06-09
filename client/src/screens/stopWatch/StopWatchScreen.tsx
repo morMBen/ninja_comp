@@ -1,9 +1,11 @@
 import React from 'react';
 import ScoresDisplay from '../../components/scoresDisplay/ScoresDisplay';
 import { useStopWatchTimer } from '../../hooks/timers/stopWatchTimer.hook';
+import SquareButton from '../../UI/buttons/squareButton/SquareButton.UI';
 import StopWatchButton from '../../UI/buttons/StopWatchButton/StopWatchButton.UI';
 import { ButtonType } from '../../UI/buttons/StopWatchButton/StopWatchButton.UI.types';
 import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
+import Span from '../../UI/span/Span';
 import { StopWatchProps } from './StopWatchScreen.types';
 
 const StopWatchScreen: React.FC<StopWatchProps> = ({
@@ -22,8 +24,18 @@ const StopWatchScreen: React.FC<StopWatchProps> = ({
     <RoundScreen
       header={
         <>
-          <button onClick={() => setIsTimerOn(false)}>X</button>
-          <h2>{competitorName}</h2>
+          <div>
+            <SquareButton type='cancel' onClick={() => setIsTimerOn(false)}>
+              Exit
+            </SquareButton>
+          </div>
+
+          <h2>
+            Name:
+            <Span type='light-green'>
+              <> {competitorName}</>
+            </Span>
+          </h2>
         </>
       }
       body={

@@ -14,7 +14,10 @@ export const Wrapper = styled.div`
     width: 70%;
   }
   .round__header {
-    /* height: 25%; */
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    grid-gap: 1rem;
     border: 2px solid #656462;
     border-radius: 5px;
     background-image: var(--noise);
@@ -55,6 +58,7 @@ export const Wrapper = styled.div`
   @media screen and (orientation: portrait) {
     /* Portrait styles */
     flex-direction: column;
+    display: flex;
     height: 100vh;
     width: 100%;
     .round__body {
@@ -62,6 +66,8 @@ export const Wrapper = styled.div`
       width: 100%;
     }
     .round__header {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 3fr;
       height: 25%;
       width: calc(100% - 1rem);
       height: calc(25% - 1rem);
