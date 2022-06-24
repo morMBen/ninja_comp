@@ -1,5 +1,7 @@
 import express from 'express';
 import path from 'path';
+import * as url from 'url';
+// const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const app = express();
 
@@ -13,7 +15,7 @@ app.get('/api/hello', (req, res) => {
 
 // All other unmatched requests will return the React app
 app.get('/*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  res.sendFile(path.resolve('./client', 'build', 'index.html'));
 });
 
 export { app };
