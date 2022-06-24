@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
+    // "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc --project .",
-    "heroku-postbuild": "cd client && npm install && npm run build && cd .. && npm install && npm run build",
+    "postinstall":"build",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "server": "nodemon --verbose --watch \"server\" --ext \"ts,json\" --exec ts-node server/server.ts",
     "client": "cd client && npm start && cd ..",
     "dev": "concurrently \"npm run client\" \"npm run server\""
