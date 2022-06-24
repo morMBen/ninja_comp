@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InsertTimerScreen from '../../components/insertTimerScreen/InsertTimerScreen';
+
 import RoundScreen from '../../UI/containers/roundScreen/RoundScreen.container';
 import Heading from '../../UI/heading/Heading.UI';
 import ResetSpeedRoundScreenBanner from './banners/ResetSpeedRound.screen.banner';
@@ -20,9 +21,11 @@ function SpeedRoundScreen() {
       <RoundScreen
         header={
           <>
-            <Heading headingType='h2' styles={{ color: 'white' }}>
-              Fast Round:
-            </Heading>
+            <div>
+              <Heading headingType='h2' styles={{ color: 'white' }}>
+                Fast Round:
+              </Heading>
+            </div>
             <Heading headingType='h4' styles={{ color: 'white' }}>
               {` Just insert competitor name, choose type and number of obstacles.
                and go...`}

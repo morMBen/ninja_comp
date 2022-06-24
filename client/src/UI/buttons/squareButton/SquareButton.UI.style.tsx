@@ -4,7 +4,8 @@ import { SquareButtonProps } from './SquareButton.UI.types';
 export const Wrapper = styled.button(
   ({ type }: SquareButtonProps) => css`
     /* CSS */
-    background-color: var(--light-yellow);
+    background-image: var(--noise);
+    background: var(--light-yellow);
     border-radius: 5px;
     color: #000;
     cursor: pointer;
@@ -24,7 +25,7 @@ export const Wrapper = styled.button(
     &:not(:disabled):hover,
     &:not(:disabled):focus {
       outline: 0;
-      background: #f4e603;
+      background-color: #f4e603;
       box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
     }
 
@@ -37,14 +38,14 @@ export const Wrapper = styled.button(
       background: var(--green);
       &:not(:disabled):hover,
       &:not(:disabled):focus {
-        background: var(--dark-green);
+        background-color: var(--dark-green);
       }
     }
     &[data-type='cancel'] {
       background: var(--light-red);
       &:not(:disabled):hover,
       &:not(:disabled):focus {
-        background: var(--red);
+        background-color: var(--red);
       }
     }
   `

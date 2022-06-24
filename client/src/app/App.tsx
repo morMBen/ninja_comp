@@ -1,15 +1,28 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import OfficialStopWatchScreen from '../screens/officialStopWatch/OfficialStopWatch.screen';
+import { BrowserRouter, useNavigate, Route, Routes } from 'react-router-dom';
 import SpeedRoundScreen from '../screens/speedRound/SpeedRound.screen';
-import StopWatchScreen from '../screens/stopWatch/StopWatchScreen';
 
+const Brr = () => {
+  const navigate = useNavigate();
+  return (
+    <button
+      onClick={() => {
+        navigate('/speed-round');
+      }}
+    >
+      Speed-round
+    </button>
+  );
+};
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<SpeedRoundScreen />} />
+          <Route path='/speed-round' element={<SpeedRoundScreen />} />
+
+          <Route path='*' element={<Brr />} />
+          <Route path='*' element={<h1>404</h1>} />
         </Routes>
       </BrowserRouter>
     </>

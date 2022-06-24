@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SquareButton from '../../../UI/buttons/squareButton/SquareButton.UI';
 import Heading from '../../../UI/heading/Heading.UI';
 import Input from '../../../UI/input/Input.UI';
@@ -14,7 +15,7 @@ const SpeedRoundScreenFrom: React.FC<SpeedRoundScreenFromProps> = ({
   const [roundType, setRoundType] = useState<RoundType>('official');
   const [numOfObstacles, setNumOfObstacles] = useState<number>(0);
   const [name, setName] = useState<string>('');
-
+  const navigate = useNavigate();
   const handleOnChange = ({ target }: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     switch (target.dataset.type) {
       case 'numOfObstacles':
@@ -59,7 +60,18 @@ const SpeedRoundScreenFrom: React.FC<SpeedRoundScreenFromProps> = ({
           <Heading headingType={'h5'}>Competitor Name:</Heading>
           <Input type='name' onChange={handleOnChange} value={name} />
           <br />
-          <SquareButton onClick={handleStart}>on</SquareButton>
+          <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+            <SquareButton type='approve' onClick={handleStart}>
+              Start
+            </SquareButton>
+            <SquareButton
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              Return
+            </SquareButton>
+          </div>
         </div>
       </div>
     </Wrapper>
