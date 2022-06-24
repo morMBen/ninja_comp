@@ -4,11 +4,11 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/index.js",
     "tsc": "tsc --project .",
     "postinstall": "tsc",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "server": "nodemon --verbose --watch \"server\" --ext \"ts,json\" --exec ts-node server/server.ts",
+    "server": "nodemon --verbose --watch \"server\" --ext \"ts,json\" --exec ts-node index.ts",
     "client": "cd client && npm start && cd ..",
     "dev": "concurrently \"npm run client\" \"npm run server\""
   },
