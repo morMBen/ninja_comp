@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, useNavigate, Route, Routes } from 'react-router-dom';
+import OfficialStopWatchScreen from '../screens/officialStopWatch/OfficialStopWatch.screen';
 import SpeedRoundScreen from '../screens/speedRound/SpeedRound.screen';
 
 const Brr = () => {
@@ -21,7 +22,6 @@ function App() {
         <Routes>
           <Route path='/speed-round' element={<SpeedRoundScreen />} />
 
-          <Route path='*' element={<Brr />} />
           <Route path='*' element={<h1>404</h1>} />
         </Routes>
       </BrowserRouter>
